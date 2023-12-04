@@ -1,4 +1,4 @@
-package adventofcode2023.src.main.java.com.adventofcode.Day3;
+package com.adventofcode.Day3;
 
 import java.io.File;
 import java.io.FileNotFoundException;
