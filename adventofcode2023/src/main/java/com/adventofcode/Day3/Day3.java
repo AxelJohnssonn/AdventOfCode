@@ -105,7 +105,7 @@ public class Day3 {
                         //System.out.println("nbr: " +nbr);
 
                         for (int[] directions : possibleDirections) {
-                            
+
                             if (i + directions[0] >= 0 && i + directions[0] < charArray.length && j + directions[1] >= 0
                                     && j + directions[1] < charArray[i + directions[0]].length) {
                                 if (!isGear && charArray[i + directions[0]][j + directions[1]] == '*') {
@@ -116,6 +116,7 @@ public class Day3 {
                         }
                     }
                 }
+                
                 if (isGear) {
                     map.put(gearCoord, map.getOrDefault(gearCoord, 1) * nbr);
                     counts.put(gearCoord, counts.getOrDefault(gearCoord, 0) + 1);
