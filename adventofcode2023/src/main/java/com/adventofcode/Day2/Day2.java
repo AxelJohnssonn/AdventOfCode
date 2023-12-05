@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
+public class Day2 {
 
     private int gameID = 1;
     public static void main(String[] args) {
