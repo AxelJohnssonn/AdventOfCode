@@ -7,11 +7,6 @@ import java.util.Scanner;
 
 public class Day5 {
     public static void main(String[] args) {
-
-        // Lägg in allt i en vektor
-
-        // loopa igenom vektorn till ingen mer rad, convertera
-
         try {
             Scanner scan = new Scanner(new File("src//main//java//com//adventofcode//Day5//input.txt"));
             ArrayList<Long> seeds = new ArrayList<>();
