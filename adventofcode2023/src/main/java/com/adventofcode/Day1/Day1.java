@@ -41,7 +41,7 @@ public class Day1 {
         int sum2 = 0;
         try {
             File file = new File(
-                    "AdventOfCode2023//adventofcode2023//src//main//java//com//adventofcode//Day1//data.txt");
+                    "src//main//java//com//adventofcode//Day1//data.txt");
             Scanner scan = new Scanner(file);
 
             TreeMap<Integer, String> wordMap = new TreeMap<>();
