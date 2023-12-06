@@ -64,7 +64,7 @@ public class Day5 {
                 locations.add(data[i]);
             }
 
-            // locations.sort((o1, o2) -> o1.compareTo(o2));
+            locations.sort((o1, o2) -> o1.compareTo(o2));
 
             System.out.println("Result part1: " + locations.get(0));
 

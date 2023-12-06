@@ -3,30 +3,37 @@ package com.adventofcode.Day3;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+import com.Aoc;
+
 import java.awt.Point;
 
-public class Day3 {
+public class Day3 extends Aoc{
+
+    protected Day3(String fileName) {
+        super(fileName);
+    }
+
     private static int[][] possibleDirections = new int[][] {
         { 0, 1 }, { 0, -1 }, { 1, 0 },
         { -1, 0 }, { 1, 1 }, { -1, -1 },
         { 1, -1 }, { -1, 1 } };
 
     public static void main(String[] args) {
-        try {
-            File file = new File("src//main//java//com//adventofcode//Day3//input");
+        new Day3("src//main//java//com//adventofcode//Day3//input");
+    }
 
-            int rowLength = determSizeRows(file);
-            int colLength = determSizeCols(file);
+    @Override
+    protected String part1(final ArrayList<String> input) {
+        char[][] charArray = new char[determSizeRows(input)][determSizeCols(input)];
 
-            char[][] charArray = new char[rowLength][colLength];
-
-            Scanner scan = new Scanner(file);
             int row = 0;
-            while (scan.hasNextLine()) {
-                String line = scan.nextLine();
+            for(String s : input) {
+                String line = s;
                 char[] lineArray = line.toCharArray();
 
                 for (int i = 0; i < charArray[row].length; i++) {
@@ -34,17 +41,7 @@ public class Day3 {
                 }
                 row++;
             }
-            part1(charArray);
-            part2(charArray);
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    public static void part1(char[][] charArray) {
         int sum = 0;
-
         for (int i = 0; i < charArray.length; i++) {
                 int nbr = 0;
                 boolean isnbr = false;
@@ -57,11 +54,7 @@ public class Day3 {
                         }
                         nbr = 0;
                     } else {
-                        //System.out.println("temp: " + tmp);
-
                         nbr = nbr * 10 + tmp;
-                        //System.out.println("nbr: " +nbr);
-
                         for (int[] direction : possibleDirections) {
 
                             if (i + direction[0] >= 0 && i + direction[0] < charArray.length && j + direction[1] >= 0
@@ -77,10 +70,23 @@ public class Day3 {
                     sum = sum + nbr;
                 }
             }
-            System.out.println("Resilt part1: " + sum);
+            return Integer.toString(sum);
     }
 
-    public static void part2(char[][] charArray) {
+    @Override
+    protected String part2(final ArrayList<String> input) {
+        char[][] charArray = new char[determSizeRows(input)][determSizeCols(input)];
+
+            int row = 0;
+            for(String s : input) {
+                String line = s;
+                char[] lineArray = line.toCharArray();
+
+                for (int i = 0; i < charArray[row].length; i++) {
+                    charArray[row][i] = lineArray[i];
+                }
+                row++;
+            }
         int sum = 0;
         Map<Point, Integer> map = new HashMap<>();
         Map<Point, Integer> counts = new HashMap<>();
@@ -100,10 +106,7 @@ public class Day3 {
                         }
                         nbr = 0;
                     } else {
-                        //System.out.println("temp: " + tmp);
                         nbr = nbr * 10 + tmp;
-                        //System.out.println("nbr: " +nbr);
-
                         for (int[] directions : possibleDirections) {
 
                             if (i + directions[0] >= 0 && i + directions[0] < charArray.length && j + directions[1] >= 0
@@ -116,18 +119,16 @@ public class Day3 {
                         }
                     }
                 }
-                
+
                 if (isGear) {
                     map.put(gearCoord, map.getOrDefault(gearCoord, 1) * nbr);
                     counts.put(gearCoord, counts.getOrDefault(gearCoord, 0) + 1);
                 }
             }
-
             for (Point p : map.keySet()) {
                 sum = sum + (counts.get(p) == 2 ? map.get(p) : 0);
             }
-
-            System.out.println("Result part2: " + sum);
+            return Integer.toString(sum);
     }
 
     private static int findNbr(char c) {
@@ -138,21 +139,20 @@ public class Day3 {
         return -1;
     }
 
-    public static int determSizeRows(File file) {
+    public static int determSizeRows(ArrayList<String> input) {
         try {
-            return (int) Files.lines(file.toPath()).count();
-        } catch (IOException e) {
+            return input.size();
+        } catch (Exception e) {
             return 0;
 
         }
     }
 
-    public static int determSizeCols(File file) {
+    public static int determSizeCols(ArrayList<String> input) {
         try {
-            Scanner scan = new Scanner(file);
-            String cols = scan.nextLine();
-            return cols.length();
-        } catch (IOException e) {
+            
+            return input.get(0).length();
+        } catch (Exception e) {
             return 0;
 
         }
