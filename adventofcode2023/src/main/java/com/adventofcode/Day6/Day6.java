@@ -1,4 +1,4 @@
-package com.Day6;
+package com.adventofcode.Day6;
 
 import java.util.ArrayList;
 import com.Aoc;
@@ -10,7 +10,8 @@ public class Day6 extends Aoc {
     }
 
     public static void main(String[] args) {
-        new Day6("src//main//java//com//Day6//input.txt");
+        new Day6("src//main//java//com//adventofcode//Day6//input.txt");
+        
     }
 
     @Override

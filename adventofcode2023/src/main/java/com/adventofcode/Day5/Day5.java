@@ -15,7 +15,7 @@ public class Day5 extends Aoc{
     }
 
     private static ArrayList<Long> seeds;
-    private static ArrayList<String> lines;
+    public static ArrayList<Long>locations;
 
     public static void main(String[] args) {
         
@@ -76,12 +76,14 @@ public class Day5 extends Aoc{
     }
 
     protected String part2(final ArrayList<String> input) {
-
         seeds = new ArrayList<>();
-
-        
-        //Long min = Collections.min(seeds);
-        
+        //BRUTE FORCE WITH 10 THREADS HAHA
+        //Result from threads:
+        //2 491 050 754 too high!
+        //1 169 277 931 too high!
+        //2 355 386 760 too high!
+        //702 443 113 too high!
+        //KORREKT: 125 742 456
         
         String firstLine = input.get(0);
         
@@ -91,6 +93,13 @@ public class Day5 extends Aoc{
             }
         }
 
+        ArrayList<String> reversedLines = new ArrayList<>();
+
+            for(int i = input.size()-1; i >= 0; i--){
+                reversedLines.add(input.get(i));
+
+            }
+
         ArrayList<Long> minList = new ArrayList<>();
 
         for(int i = 0; i < seeds.size(); i+=2) {
@@ -98,13 +107,40 @@ public class Day5 extends Aoc{
         }
         System.out.println(minList);
 
-        //minList.sort((l1,l2) -> l1.compareTo(l2));
-        Long min = minList.get(0);
+        
+        //Brute force deluxe haha.
+        Thread[] threads = new Thread[minList.size()];
+    
+        locations = new ArrayList<>();
+        for(int i =0 ; i < minList.size(); i++) {
+            Long min = minList.get(i);
+            Long max = getRange(min, seeds);
 
-        Long minlocation = Long.MAX_VALUE;
+            threads[i] = new Thread(() -> {
+                findNbr(min, max, input);
+            });
+            System.out.println("Starting Thread: " + i + " Checking from: " + min + " To: " + max);
+            
 
+            threads[i].start();
+        }
+        System.out.println("Results from part 2 is not displayed correctly, all locations were printed out and manually checked, optimized algoritm on it's way!");
+        return Long.toString(0);
+        
+    }
+
+    public static Long getRange(Long min, ArrayList<Long> seeds) {
+        Long max = (long) 0;
+        int index = seeds.indexOf(min);
+
+        max = min + seeds.get(index+1)-1;
+        return max;
+    }
+
+    public long findNbr(Long min, Long max, ArrayList<String> input) {
         boolean converted = false;
-        for(Long i = min; i < getRange(min, seeds); i++) {
+        Long minlocation = Long.MAX_VALUE;
+        for(Long i = min; i < max; i++) {
             Long seed = i;
             //System.out.println(seed);
             for (String line : input) {
@@ -128,14 +164,7 @@ public class Day5 extends Aoc{
             }
         }
 
-        return Long.toString(minlocation);
-    }
-
-    public static Long getRange(Long min, ArrayList<Long> seeds) {
-        Long max = (long) 0;
-        int index = seeds.indexOf(min);
-
-        max = min + seeds.get(index+1);
-        return max;
+        System.out.println(minlocation);
+        return minlocation;
     }
 }
