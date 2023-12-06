@@ -1,68 +1,78 @@
 package com.Day6;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
+import com.Aoc;
 
-public class Day6 {
+public class Day6 extends Aoc {
+
+    protected Day6(String fileName) {
+        super(fileName);
+    }
+
     public static void main(String[] args) {
-        try {
-            File file = new File("src//main//java//com//Day6//input.txt");
-            Scanner scan;
-            scan = new Scanner(file);
-            ArrayList<Integer> timeList = new ArrayList<>();
-            ArrayList<Integer> distanceList = new ArrayList<>();
-            String totTime = "";
-            String totDisctance = "";
+        new Day6("src//main//java//com//Day6//input.txt");
+    }
 
-            for (String s : scan.nextLine().split(": ")[1].trim().split(" ")) {
-                if (!s.isEmpty()) {
-                    timeList.add(Integer.parseInt(s));
-                    totTime = totTime + s;
-                }
+    @Override
+    protected String part1(final ArrayList<String> in) {
+
+        ArrayList<Integer> timeList = new ArrayList<>();
+        ArrayList<Integer> distanceList = new ArrayList<>();
+
+        for (String s : in.get(0).split(": ")[1].trim().split(" ")) {
+            if (!s.isEmpty()) {
+                timeList.add(Integer.parseInt(s));
             }
-
-            for (String s : scan.nextLine().split(": ")[1].trim().split(" ")) {
-                if (!s.isEmpty()) {
-                    distanceList.add(Integer.parseInt(s));
-                    totDisctance = totDisctance + s;
-                }
-            }
-            
-            part1(timeList, distanceList);
-            part2(Long.parseLong(totTime), Long.parseLong(totDisctance));
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
 
-    }
-
-    private static void part1(ArrayList<Integer> timeList, ArrayList<Integer> distanceList) {
-         int winCounter = 0;
-            int res = 1;
-            for (int k = 0; k < timeList.size(); k++) {
-                for (int i = 0; i < timeList.get(k); i++) {
-                    int time = timeList.get(k) - i;
-                    int currentTravel = 0;
-                    int speed = i;
-                    currentTravel = time * speed;
-                    if (currentTravel > distanceList.get(k)) {
-                        winCounter++;
-                    }
-                }
-                res = res * winCounter;
-                winCounter = 0;
+        for (String s : in.get(1).split(": ")[1].trim().split(" ")) {
+            if (!s.isEmpty()) {
+                distanceList.add(Integer.parseInt(s));
             }
+        }
 
-            System.out.println("Result part1: " + res);
+        int winCounter = 0;
+        int res = 1;
+        for (int k = 0; k < timeList.size(); k++) {
+            for (int i = 0; i < timeList.get(k); i++) {
+                int time = timeList.get(k) - i;
+                int currentTravel = 0;
+                int speed = i;
+                currentTravel = time * speed;
+                if (currentTravel > distanceList.get(k)) {
+                    winCounter++;
+                }
+            }
+            res = res * winCounter;
+            winCounter = 0;
+        }
+
+        return Integer.toString(res);
     }
 
-    private static void part2(long totTime, long totDisctance) {
+    @Override
+    protected String part2(final ArrayList<String> in) {
+        String totTimeString = "";
+        String totDisctanceString = "";
+
+        for (String s : in.get(0).split(": ")[1].trim().split(" ")) {
+            if (!s.isEmpty()) {
+                totTimeString = totTimeString + s;
+            }
+        }
+
+        for (String s : in.get(1).split(": ")[1].trim().split(" ")) {
+            if (!s.isEmpty()) {
+                totDisctanceString = totDisctanceString + s;
+            }
+        }
+
+        Long totTime = Long.parseLong(totTimeString);
+        Long totDisctance = Long.parseLong(totDisctanceString);
+
         int winCounter = 0;
         for (int i = 0; i < totTime; i++) {
-            Long time =  totTime - i;
+            Long time = totTime - i;
             Long currentTravel = (long) 0;
             Long speed = (long) i;
             currentTravel = time * speed;
@@ -71,6 +81,6 @@ public class Day6 {
             }
 
         }
-        System.out.println("Result part2: " + winCounter);
+        return Integer.toString(winCounter);
     }
 }
