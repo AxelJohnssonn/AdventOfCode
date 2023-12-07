@@ -83,9 +83,9 @@ public class Day5 extends Aoc{
         //1 169 277 931 too high!
         //2 355 386 760 too high!
         //702 443 113 too high!
-        //KORREKT: 125 742 456
-
-        //körning 2 16:32 <-startade
+        //125 742 456 KORREKT!!!!
+        //650 827 277 
+        //919 469 344 
         
         String firstLine = input.get(0);
         
@@ -152,13 +152,11 @@ public class Day5 extends Aoc{
                 }
 
                 if (!line.equals("") && Character.isDigit(line.charAt(0)) && !converted) {
-
                     if (seed <= Long.parseLong(line.split(" ")[1]) + Long.parseLong(line.split(" ")[2]) - 1
                             && seed >= Long.parseLong(line.split(" ")[1])) {
                         seed = Long.parseLong(line.split(" ")[0]) - Long.parseLong(line.split(" ")[1]) + seed;
                         converted = true;
                     }
-
                 }
             }
             if(seed < minlocation) {
