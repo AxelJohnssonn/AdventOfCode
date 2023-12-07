@@ -84,6 +84,8 @@ public class Day5 extends Aoc{
         //2 355 386 760 too high!
         //702 443 113 too high!
         //KORREKT: 125 742 456
+
+        //körning 2 16:32 <-startade
         
         String firstLine = input.get(0);
         
@@ -102,7 +104,7 @@ public class Day5 extends Aoc{
 
         ArrayList<Long> minList = new ArrayList<>();
 
-        for(int i = 0; i < seeds.size(); i+=2) {
+        for(int i = 8; i < seeds.size(); i+=2) {
             minList.add(seeds.get(i));
         }
         System.out.println(minList);
@@ -112,7 +114,7 @@ public class Day5 extends Aoc{
         Thread[] threads = new Thread[minList.size()];
     
         locations = new ArrayList<>();
-        for(int i =0 ; i < minList.size(); i++) {
+        for(int i = 0 ; i < minList.size(); i++) {
             Long min = minList.get(i);
             Long max = getRange(min, seeds);
 
@@ -164,7 +166,7 @@ public class Day5 extends Aoc{
             }
         }
 
-        System.out.println(minlocation);
+        System.out.println("For seed " + min +" to "+ max +" -> min location: "+  minlocation);
         return minlocation;
     }
 }
