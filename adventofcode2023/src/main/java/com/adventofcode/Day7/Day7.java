@@ -3,6 +3,9 @@ package com.adventofcode.Day7;
 import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.Aoc;
 
 public class Day7 extends Aoc {
@@ -25,7 +28,7 @@ public class Day7 extends Aoc {
         values.put("Q", 12);
         values.put("J", 11);
         values.put("T", 10);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 2; i < 10; i++) {
             values.put(Integer.toString(i), i);
         }
 
@@ -130,66 +133,43 @@ public class Day7 extends Aoc {
     }
 
     public String getType(int[] values, boolean part2) {
-        String type = "";
-        int likeCounter = 0;
-        int prev = 999;
-        int jCounter = 0;
+
+        String type = "7|high";
         Arrays.sort(values);
-        for (int i = 0; i < values.length; i++) {
-            if(values[i] == 1 && part2) {
-                jCounter++;
+        Map<Integer, Integer> cardCount = new HashMap<>();
+        
+        for (int card : values) {
+            cardCount.put(card, cardCount.getOrDefault(card, 0) + 1);
+        }
+        
+        for(Map.Entry<Integer,Integer> entry : cardCount.entrySet()) {
+            if (entry.getKey() == 1) {
                 continue;
-            }else {
-                if (prev == 999) {
-                    prev = values[0];
-                } else {
-                    if (prev == values[i]) {
-                        likeCounter++;
-                    }
-                    prev = values[i];
-                }
             }
-
-        }
-
-        //System.out.println(jCounter);
-        if (likeCounter == 1) {
-            type = "6|pair";
-        }
-
-        if (likeCounter == 2) {
-            if (values[0] == values[1]) {
-                if (values[1] == values[2]) {
-                    type = "4|3kind";
-                } else {
-                    type = "5|2pair";
-                }
-            } else if (values[1] == values[2]) {
-                if (values[2] == values[3]) {
-                    type = "4|3kind";
-                } else {
-                    type = "5|2pair";
-                }
-            } else if (values[2] == values[3]) {
-                type = "4|3kind";
-            }
-        }
-
-        if (likeCounter == 3) {
-            if (values[1] == values[2] && values[2] == values[3]) {
+            
+            if (entry.getValue() == 5) {
+                type = "1|5kind";
+            } else if (entry.getValue() == 4) {
                 type = "2|4kind";
-            } else {
-                type = "3|full";
+            } else if (entry.getValue() == 3) {
+                if (type.equals("6|pair")) {
+                    type = "3|full";
+                } else {
+                    type = "4|3kind";
+                }
+            } else if (entry.getValue() == 2) {
+                if (type.equals("4|3kind")) {
+                    type = "3|full";
+                } else if (type.equals("6|pair")) {
+                    type = "5|2pair";
+                } else {
+                    type = "6|pair";
+                }
             }
+
         }
 
-        if (likeCounter == 4) {
-            type = "1|5kind";
-        }
-        if(likeCounter == 0) {
-            type = "7|high";
-        }
-
+        int jCounter = cardCount.getOrDefault(1, 0);
 
         if(part2) {
             //System.out.println("HEJHEJ " + jCounter + " " + type);
@@ -224,12 +204,13 @@ public class Day7 extends Aoc {
                     type = "1|5kind";
                 }
             } else if (type.equals("2|4kind")) {
+                //System.out.println("HEJHEJ" + jCounter);
                 if (jCounter == 1) {
                     type = "1|5kind";
                 }
             }
         }
-        //System.out.print(jCounter);
+        //System.out.print(jCounter + " ");
         return type;
     }
 
@@ -242,7 +223,7 @@ public class Day7 extends Aoc {
         values.put("Q", 12);
         values.put("J", 1);
         values.put("T", 10);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 2; i < 10; i++) {
             values.put(Integer.toString(i), i);
         }
 
@@ -303,6 +284,8 @@ public class Day7 extends Aoc {
         int sum = 0;
         for (int i = 0; i < all.size(); i++) {
             sum = sum + (Integer.parseInt(all.get(i).split(" ")[1]) * (i + 1));
+            //System.out.println(all.get(i) +" " + getType(getValue(all.get(i).split(" ")[0], values), true));
+
         }
         return Integer.toString(sum);
     }
