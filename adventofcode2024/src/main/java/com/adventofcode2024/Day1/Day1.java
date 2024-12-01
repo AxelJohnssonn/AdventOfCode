@@ -2,7 +2,6 @@ package com.adventofcode2024.Day1;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.TreeMap;
 
 import com.Aoc;
 
@@ -26,13 +25,10 @@ public class Day1 extends Aoc {
         }
         firstList.sort((n1, n2) -> n1.compareTo(n2));
         secondList.sort((n1, n2) -> n1.compareTo(n2));
-
         int sum = 0;
-
         for (int i = 0; i < firstList.size(); i++) {
             sum += Math.abs(firstList.get(i) - secondList.get(i));
         }
-
         return String.valueOf(sum);
     }
 
@@ -54,8 +50,6 @@ public class Day1 extends Aoc {
                 sum += (nbr * freqList.get(nbr));
             }
         }
-
         return String.valueOf(sum);
     }
-
 }
