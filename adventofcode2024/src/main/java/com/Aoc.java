@@ -8,28 +8,29 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class Aoc {
-    	protected Aoc(String fileName) {
+    protected Aoc(String day) {
         System.out.println("Starting...");
-        final ArrayList<String> input = getList(fileName);
+        final ArrayList<String> input = getList(
+                "adventofcode2024/src/main/java/com/adventofcode2024/Day" + day + "/input.txt");
 
-		Instant start = Instant.now();
-		final String output1 = part1(input);
-		Instant end = Instant.now();
+        Instant start = Instant.now();
+        final String output1 = part1(input);
+        Instant end = Instant.now();
         System.out.println("---------------------------------------------------------");
-		System.out.println("Result part 1: " + output1);
-		System.out.println("Took: " + Duration.between(start, end).toMillis() + " ms.");
-		System.out.println("---------------------------------------------------------\n");
-		start = Instant.now();
-		final String output2 = part2(input);
-		end = Instant.now();
-        System.out.println("---------------------------------------------------------");
-		System.out.println("Result part 2: " + output2);
-		System.out.println("Took: " + Duration.between(start, end).toMillis() + " ms.");
+        System.out.println("Result part 1: " + output1);
+        System.out.println("Took: " + Duration.between(start, end).toMillis() + " ms.");
         System.out.println("---------------------------------------------------------\n");
-        
+        start = Instant.now();
+        final String output2 = part2(input);
+        end = Instant.now();
+        System.out.println("---------------------------------------------------------");
+        System.out.println("Result part 2: " + output2);
+        System.out.println("Took: " + Duration.between(start, end).toMillis() + " ms.");
+        System.out.println("---------------------------------------------------------\n");
+
         System.out.println("Finished.");
-	}
-    
+    }
+
     protected abstract String part1(ArrayList<String> input);
 
     protected abstract String part2(ArrayList<String> input);
@@ -39,11 +40,11 @@ public abstract class Aoc {
         Scanner scan;
         try {
             scan = new Scanner(new File(fileName));
-            while(scan.hasNextLine()) {
+            while (scan.hasNextLine()) {
                 list.add(scan.nextLine());
             }
         } catch (FileNotFoundException e) {
-            
+
             e.printStackTrace();
         }
 

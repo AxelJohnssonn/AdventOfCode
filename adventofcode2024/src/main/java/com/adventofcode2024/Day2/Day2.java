@@ -9,12 +9,12 @@ import com.Aoc;
 import com.adventofcode2024.Day1.Day1;
 
 public class Day2 extends Aoc {
-    protected Day2(String fileName) {
-        super(fileName);
+    protected Day2(String day) {
+        super(day);
     }
 
     public static void main(String[] args) {
-        new Day2("adventofcode2024/src/main/java/com/adventofcode2024/Day2/input.txt");
+        new Day2("2");
     }
 
     @Override

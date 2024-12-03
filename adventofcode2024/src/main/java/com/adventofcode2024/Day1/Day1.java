@@ -7,12 +7,12 @@ import com.Aoc;
 
 public class Day1 extends Aoc {
 
-    protected Day1(String fileName) {
-        super(fileName);
+    protected Day1(String day) {
+        super(day);
     }
 
     public static void main(String[] args) {
-        new Day1("adventofcode2024/src/main/java/com/adventofcode2024/Day1/input.txt");
+        new Day1("1");
     }
 
     @Override
