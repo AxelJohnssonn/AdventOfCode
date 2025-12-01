@@ -6,12 +6,12 @@ import com.Aoc;
 
 public class Day12 extends Aoc {
 
-    protected Day12(String day) {
-        super(day);
+    protected Day12(String day, String inputFile) {
+        super(day, inputFile);
     }
 
     public static void main(String[] args) {
-        new Day12("12");
+        new Day12("12","input");
     }
 
     @Override
@@ -23,6 +23,6 @@ public class Day12 extends Aoc {
     @Override
     protected String part2(ArrayList<String> input) {
        
-        return String.valueOf("sum");
+        return String.valueOf("");
     }
 }

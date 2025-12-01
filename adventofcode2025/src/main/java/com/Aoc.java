@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class Aoc {
-    protected Aoc(String day) {
+    protected Aoc(String day, String inputFile) {
         System.out.println("Starting...");
         final ArrayList<String> input = getList(
-                "adventofcode2024/src/main/java/com/adventofcode2024/Day" + day + "/input.txt");
+                "adventofcode2025/src/main/java/com/adventofcode2025/Day" + day + "/"+ inputFile +".txt");
 
         Instant start = Instant.now();
         final String output1 = part1(input);

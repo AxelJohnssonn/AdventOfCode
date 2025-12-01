@@ -1,18 +1,17 @@
 package com.adventofcode2025.Day4;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import com.Aoc;
 
 public class Day4 extends Aoc {
 
-    protected Day4(String day) {
-        super(day);
+    protected Day4(String day, String inputFile) {
+        super(day, inputFile);
     }
 
     public static void main(String[] args) {
-        new Day4("4");
+        new Day4("4","input");
     }
 
     @Override
@@ -24,6 +23,6 @@ public class Day4 extends Aoc {
     @Override
     protected String part2(ArrayList<String> input) {
        
-        return String.valueOf("sum");
+        return String.valueOf("");
     }
 }
