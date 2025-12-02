@@ -89,8 +89,9 @@ public class Day2 extends Aoc {
 class Tuple<X, Y> { 
     public final X x; 
     public final Y y; 
+    
     public Tuple(X x, Y y) { 
-    this.x = x; 
-    this.y = y; 
+        this.x = x; 
+        this.y = y; 
     } 
 }
