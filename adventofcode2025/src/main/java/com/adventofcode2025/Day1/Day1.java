@@ -1,8 +1,5 @@
 package com.adventofcode2025.Day1;
 import java.util.ArrayList;
-import java.util.LinkedList;
-
-import org.w3c.dom.Node;
 
 import com.Aoc;
 
@@ -31,7 +28,7 @@ public class Day1 extends Aoc {
                     currentposition = (currentposition + step) % 100;
                 } else if(row.startsWith("L")){
                     step = Integer.parseInt(row.split("L")[1]);
-                    currentposition = (currentposition - step + 100) % 100;
+                    currentposition = (100+currentposition-step) % 100;
                 }
                 if(currentposition == 0)
                     password++;

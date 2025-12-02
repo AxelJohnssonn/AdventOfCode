@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.Aoc;
-import com.adventofcode2024.Day1.Day1;
 
 public class Day2 extends Aoc {
     protected Day2(String day) {
