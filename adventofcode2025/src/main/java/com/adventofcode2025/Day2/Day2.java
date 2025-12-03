@@ -21,7 +21,7 @@ public class Day2 extends Aoc {
         ArrayList<Tuple<Long, Long>> tupleList = new ArrayList<>();
         ArrayList<Long> invalidList = new ArrayList<>();
         for(String r : input){
-            Arrays.stream(r.split(",")).filter(pair ->(pair.split("-")[0].length()%2 == 0 || pair.split("-")[1].length()%2 == 0))
+            Arrays.stream(r.split(","))
                     .collect(Collectors.toList())
                     .forEach(pair -> tupleList.add(new Tuple(Long.valueOf(pair.split("-")[0]), Long.valueOf(pair.split("-")[1]))));
         }

@@ -1,6 +1,7 @@
 package com.adventofcode2025.Day4;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import com.Aoc;
 
@@ -15,8 +16,7 @@ public class Day4 extends Aoc {
     }
 
     @Override
-    protected String part1(ArrayList<String> input) {
-       
+    protected String part1(ArrayList<String> input) {        
         return String.valueOf("");
     }
 
