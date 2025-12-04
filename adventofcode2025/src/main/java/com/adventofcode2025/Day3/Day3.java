@@ -2,8 +2,6 @@ package com.adventofcode2025.Day3;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 
 import com.Aoc;
 
@@ -45,6 +43,30 @@ public class Day3 extends Aoc {
 
     @Override
     protected String part2(ArrayList<String> input) {
-        return "";
+        ArrayList<Long> largestBatteryList = new ArrayList<>();
+        for (String batteries : input) {
+            int toRemove = batteries.length() - 12;
+            
+            StringBuilder result = new StringBuilder();
+            
+            for (int i = 0; i < batteries.length(); i++) {
+                char current = batteries.charAt(i);
+                                
+                while (result.length() > 0 && toRemove > 0 && result.charAt(result.length() - 1) < current) {
+                    result.deleteCharAt(result.length() - 1);
+                    toRemove--;
+                }
+                
+                result.append(current);
+            }
+            
+            while (result.length() > 12) {
+                result.deleteCharAt(result.length() - 1);
+            }
+            
+            largestBatteryList.add(Long.valueOf(result.toString()));
+        }
+
+        return String.valueOf(largestBatteryList.stream().mapToLong(Long::longValue).sum());
     }
 }
