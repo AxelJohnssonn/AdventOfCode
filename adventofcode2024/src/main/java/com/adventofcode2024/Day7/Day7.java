@@ -5,10 +5,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.google.common.primitives.Longs;
 
 import com.Aoc;
-import com.adventofcode2024.Day5.Day5;
 
 public class Day7 extends Aoc {
     protected Day7(String fileName) {
@@ -65,9 +63,7 @@ public class Day7 extends Aoc {
             if (isValidPart2(row, row.get(0), row.get(1), 2)) {
                 sum += row.get(0);
             }
-
         }
-
         return String.valueOf(sum);
     }
 }
