@@ -2,9 +2,6 @@ package com.adventofcode2025.Day6;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.IntPredicate;
-import java.util.stream.Collectors;
-
 import com.Aoc;
 
 public class Day6 extends Aoc {
@@ -26,7 +23,7 @@ public class Day6 extends Aoc {
             for(int k = 0; k < input.size() - 1; k++) {
                 long number = 0;
                 number = Long.parseLong(input.get(k).trim().split("\\s+")[i].trim());
-                if res == 0) {
+                if (res == 0) {
                     res = number;
                     continue;
                 }
